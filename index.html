@@ -363,28 +363,6 @@
     display: none;
   }
   .demo-error.show { display: block; }
-  .demo-key-section {
-    margin-bottom: 16px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid #1e1e2e;
-  }
-  .demo-key-input {
-    width: 100%;
-    padding: 10px 12px;
-    font-size: 14px;
-    font-family: inherit;
-    background: #0d0d15;
-    border: 1px solid #2a2a3a;
-    border-radius: 8px;
-    color: #eee;
-    outline: none;
-  }
-  .demo-key-input:focus { border-color: #6366f1; }
-  .demo-key-note {
-    font-size: 11px;
-    color: #555;
-    margin-top: 4px;
-  }
 
   /* FOOTER */
   footer {
@@ -457,12 +435,6 @@
   <h2>Try it right now</h2>
   <p>No signup needed. See how it works instantly.</p>
   <div class="demo-box">
-    <div class="demo-key-section">
-      <label class="demo-label">Your Anthropic API key (temporary for demo)</label>
-      <input type="password" class="demo-key-input" id="apiKey" placeholder="sk-ant-api03-..." />
-      <div class="demo-key-note">Your key stays in your browser. Never stored. ~$0.01 per response.</div>
-    </div>
-    
     <label class="demo-label">Star rating</label>
     <div class="demo-stars" id="stars">
       <button class="demo-star active" data-val="1">★</button>
@@ -556,7 +528,6 @@ function loadSample(stars) {
 }
 
 async function generateReply() {
-  const apiKey = document.getElementById('apiKey').value;
   const review = document.getElementById('reviewInput').value.trim();
   const btn = document.getElementById('generateBtn');
   const errEl = document.getElementById('errorMsg');
@@ -565,11 +536,6 @@ async function generateReply() {
   errEl.classList.remove('show');
   resultBox.classList.remove('show');
 
-  if (!apiKey.startsWith('sk-ant-')) {
-    errEl.textContent = 'Please enter your Anthropic API key above.';
-    errEl.classList.add('show');
-    return;
-  }
   if (!review) {
     errEl.textContent = 'Paste a review first.';
     errEl.classList.add('show');
@@ -580,27 +546,19 @@ async function generateReply() {
   btn.textContent = 'Writing your reply...';
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const res = await fetch('/api/generate', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 500,
-        messages: [{
-          role: 'user',
-          content: `Write a short, professional response to this ${currentStars}-star Google review for a small business. Keep it under 80 words. Be genuine, not corporate. If negative: apologize, offer to fix it. If positive: thank them warmly. Write ONLY the reply text, nothing else.\n\nReview: "${review}"`
-        }]
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ review, stars: currentStars })
     });
 
-    if (!res.ok) throw new Error('API error — check your key and try again.');
     const data = await res.json();
-    document.getElementById('resultText').textContent = data.content[0].text;
+
+    if (!res.ok) {
+      throw new Error(data.error || 'Something went wrong. Please try again.');
+    }
+
+    document.getElementById('resultText').textContent = data.reply;
     resultBox.classList.add('show');
   } catch (e) {
     errEl.textContent = e.message;
