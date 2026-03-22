@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReviewReply — AI Review Responses for Small Businesses</title>
+<meta name="description" content="Stop stressing over negative reviews. Paste any Google or Yelp review and get a perfect, professional response in seconds. Built for small businesses.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: #0a0a0f;
+    color: #e8e8ed;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .nav-cta {
+    padding: 10px 20px;
+    background: #6366f1;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: #5558e6; }
+
+  /* HERO */
+  .hero {
+    max-width: 720px;
+    margin: 60px auto 0;
+    text-align: center;
+    padding: 0 24px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 50px;
+    font-size: 13px;
+    color: #a5b4fc;
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+  }
+  h1 span { color: #6366f1; }
+  .hero p {
+    font-size: 18px;
+    color: #888;
+    max-width: 520px;
+    margin: 0 auto 36px;
+  }
+  .hero-cta {
+    display: inline-block;
+    padding: 14px 32px;
+    background: #6366f1;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .hero-cta:hover { background: #5558e6; transform: translateY(-1px); }
+
+  /* SOCIAL PROOF */
+  .proof {
+    text-align: center;
+    margin: 48px auto 0;
+    padding: 0 24px;
+    color: #555;
+    font-size: 14px;
+  }
+  .proof strong { color: #888; }
+
+  /* HOW IT WORKS */
+  .how {
+    max-width: 900px;
+    margin: 80px auto 0;
+    padding: 0 24px;
+  }
+  .how h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 48px;
+    font-weight: 700;
+  }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+  }
+  .step {
+    background: #12121a;
+    border: 1px solid #1e1e2e;
+    border-radius: 14px;
+    padding: 28px 24px;
+  }
+  .step-num {
+    width: 36px; height: 36px;
+    background: rgba(99, 102, 241, 0.15);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 16px; color: #6366f1;
+    margin-bottom: 16px;
+  }
+  .step h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+  .step p { font-size: 14px; color: #777; }
+
+  /* PRICING */
+  .pricing {
+    max-width: 420px;
+    margin: 80px auto 0;
+    padding: 0 24px;
+    text-align: center;
+  }
+  .pricing h2 {
+    font-size: 28px;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  .pricing > p {
+    color: #777;
+    margin-bottom: 32px;
+    font-size: 15px;
+  }
+  .price-card {
+    background: #12121a;
+    border: 2px solid #6366f1;
+    border-radius: 16px;
+    padding: 36px 28px;
+    text-align: center;
+  }
+  .price-amount {
+    font-size: 48px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .price-amount span { font-size: 18px; color: #888; font-weight: 400; }
+  .price-desc {
+    color: #888;
+    font-size: 15px;
+    margin: 8px 0 24px;
+  }
+  .price-features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 28px;
+  }
+  .price-features li {
+    padding: 8px 0;
+    font-size: 14px;
+    color: #aaa;
+    border-bottom: 1px solid #1e1e2e;
+  }
+  .price-features li:last-child { border: none; }
+  .price-features li::before {
+    content: "✓ ";
+    color: #6366f1;
+    font-weight: 700;
+  }
+  .price-cta {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: #6366f1;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+    text-align: center;
+  }
+  .price-cta:hover { background: #5558e6; }
+
+  /* DEMO SECTION */
+  .demo {
+    max-width: 600px;
+    margin: 80px auto 0;
+    padding: 0 24px;
+  }
+  .demo h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  .demo > p {
+    text-align: center;
+    color: #777;
+    margin-bottom: 32px;
+    font-size: 15px;
+  }
+  .demo-box {
+    background: #12121a;
+    border: 1px solid #1e1e2e;
+    border-radius: 16px;
+    padding: 28px;
+  }
+  .demo-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #888;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .demo-stars {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 16px;
+  }
+  .demo-star {
+    width: 36px; height: 36px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: 1px solid #2a2a3a;
+    background: #1a1a24;
+    cursor: pointer;
+    color: #555;
+    transition: all 0.15s;
+  }
+  .demo-star.active {
+    background: #6366f1;
+    border-color: #6366f1;
+    color: #fff;
+  }
+  .demo-textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 12px;
+    font-size: 14px;
+    font-family: inherit;
+    background: #0d0d15;
+    border: 1px solid #2a2a3a;
+    border-radius: 10px;
+    color: #eee;
+    outline: none;
+    resize: vertical;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+  .demo-textarea:focus { border-color: #6366f1; }
+  .demo-textarea::placeholder { color: #444; }
+  .demo-samples {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .demo-sample {
+    padding: 5px 12px;
+    font-size: 12px;
+    background: transparent;
+    border: 1px solid #2a2a3a;
+    border-radius: 6px;
+    color: #777;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+  }
+  .demo-sample:hover { border-color: #6366f1; color: #aaa; }
+  .demo-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    background: #6366f1;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .demo-btn:hover { background: #5558e6; }
+  .demo-btn:disabled { background: #2a2a3a; color: #555; cursor: not-allowed; }
+  .demo-result {
+    margin-top: 20px;
+    background: #0a1a0a;
+    border: 1px solid #1a3a1a;
+    border-radius: 10px;
+    padding: 16px;
+    display: none;
+  }
+  .demo-result.show { display: block; }
+  .demo-result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .demo-result-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4ade80;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .demo-copy {
+    padding: 5px 12px;
+    font-size: 12px;
+    background: transparent;
+    border: 1px solid #1a3a1a;
+    border-radius: 6px;
+    color: #4ade80;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .demo-result p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #ccc;
+  }
+  .demo-error {
+    color: #ef4444;
+    font-size: 13px;
+    margin-top: 8px;
+    display: none;
+  }
+  .demo-error.show { display: block; }
+  .demo-key-section {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #1e1e2e;
+  }
+  .demo-key-input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    background: #0d0d15;
+    border: 1px solid #2a2a3a;
+    border-radius: 8px;
+    color: #eee;
+    outline: none;
+  }
+  .demo-key-input:focus { border-color: #6366f1; }
+  .demo-key-note {
+    font-size: 11px;
+    color: #555;
+    margin-top: 4px;
+  }
+
+  /* FOOTER */
+  footer {
+    max-width: 1100px;
+    margin: 80px auto 0;
+    padding: 32px 24px;
+    border-top: 1px solid #1a1a2a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer p { font-size: 13px; color: #444; }
+  footer a { color: #555; text-decoration: none; font-size: 13px; margin-left: 20px; }
+  footer a:hover { color: #888; }
+
+  @media (max-width: 600px) {
+    nav { padding: 16px 20px; }
+    .hero { margin-top: 40px; }
+    .steps { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; }
+    footer a { margin: 0 10px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">★</div>
+    ReviewReply
+  </a>
+  <a href="#try" class="nav-cta">Try it free</a>
+</nav>
+
+<section class="hero">
+  <div class="badge">AI-powered review responses</div>
+  <h1>Stop stressing over <span>negative reviews</span></h1>
+  <p>Paste any Google or Yelp review and get a perfect, professional response in seconds. Built for busy small business owners.</p>
+  <a href="#try" class="hero-cta">Try it free — no signup needed</a>
+</section>
+
+<div class="proof">
+  <p>Built for <strong>restaurants</strong>, <strong>dentists</strong>, <strong>salons</strong>, <strong>contractors</strong>, and every local business that gets reviews.</p>
+</div>
+
+<section class="how">
+  <h2>How it works</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Paste the review</h3>
+      <p>Copy any customer review from Google, Yelp, or Facebook and paste it into ReviewReply.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Get your reply</h3>
+      <p>Our AI writes a professional, empathetic response tailored to the specific review in seconds.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Copy and post</h3>
+      <p>Copy the response and paste it directly into Google or Yelp. Done in under 10 seconds.</p>
+    </div>
+  </div>
+</section>
+
+<section class="demo" id="try">
+  <h2>Try it right now</h2>
+  <p>No signup needed. See how it works instantly.</p>
+  <div class="demo-box">
+    <div class="demo-key-section">
+      <label class="demo-label">Your Anthropic API key (temporary for demo)</label>
+      <input type="password" class="demo-key-input" id="apiKey" placeholder="sk-ant-api03-..." />
+      <div class="demo-key-note">Your key stays in your browser. Never stored. ~$0.01 per response.</div>
+    </div>
+    
+    <label class="demo-label">Star rating</label>
+    <div class="demo-stars" id="stars">
+      <button class="demo-star active" data-val="1">★</button>
+      <button class="demo-star" data-val="2">☆</button>
+      <button class="demo-star" data-val="3">☆</button>
+      <button class="demo-star" data-val="4">☆</button>
+      <button class="demo-star" data-val="5">☆</button>
+    </div>
+
+    <label class="demo-label">Paste the review</label>
+    <textarea class="demo-textarea" id="reviewInput" placeholder="Paste the customer review here..."></textarea>
+
+    <div class="demo-samples">
+      <span style="font-size:12px;color:#444;line-height:28px;">Try:</span>
+      <button class="demo-sample" onclick="loadSample(1)">Angry 1-star</button>
+      <button class="demo-sample" onclick="loadSample(5)">Happy 5-star</button>
+      <button class="demo-sample" onclick="loadSample(2)">Mixed 2-star</button>
+    </div>
+
+    <button class="demo-btn" id="generateBtn" onclick="generateReply()">Generate reply</button>
+    <div class="demo-error" id="errorMsg"></div>
+
+    <div class="demo-result" id="resultBox">
+      <div class="demo-result-header">
+        <span class="demo-result-label">Your reply is ready</span>
+        <button class="demo-copy" onclick="copyReply()">Copy</button>
+      </div>
+      <p id="resultText"></p>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <h2>Simple pricing</h2>
+  <p>One plan. Unlimited replies. Cancel anytime.</p>
+  <div class="price-card">
+    <div class="price-amount">$9<span>/month</span></div>
+    <div class="price-desc">Everything you need to manage review responses.</div>
+    <ul class="price-features">
+      <li>Unlimited AI review responses</li>
+      <li>Works with Google, Yelp, Facebook reviews</li>
+      <li>Professional, empathetic tone</li>
+      <li>Customizable response style</li>
+      <li>Copy and paste in seconds</li>
+      <li>Cancel anytime — no contracts</li>
+    </ul>
+    <a href="#try" class="price-cta">Start free trial</a>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 ReviewReply. All rights reserved.</p>
+  <div>
+    <a href="#">Terms</a>
+    <a href="#">Privacy</a>
+  </div>
+</footer>
+
+<script>
+let currentStars = 1;
+
+// Star rating
+document.querySelectorAll('.demo-star').forEach(btn => {
+  btn.addEventListener('click', () => {
+    currentStars = parseInt(btn.dataset.val);
+    document.querySelectorAll('.demo-star').forEach((s, i) => {
+      if (i < currentStars) {
+        s.classList.add('active');
+        s.textContent = '★';
+      } else {
+        s.classList.remove('active');
+        s.textContent = '☆';
+      }
+    });
+  });
+});
+
+function loadSample(stars) {
+  const samples = {
+    1: "Waited 45 minutes past my appointment. Receptionist was rude when I asked about the delay. The service itself was rushed and they didn't explain anything. Won't be coming back.",
+    5: "Amazing experience! The staff was incredibly friendly and professional. They took the time to explain everything and made me feel comfortable. Highly recommend to anyone!",
+    2: "Food was decent but service was painfully slow. Waited 30 minutes for drinks and over an hour for entrees. Our waiter forgot our appetizer. Manager did comp dessert which was nice."
+  };
+  document.getElementById('reviewInput').value = samples[stars];
+  currentStars = stars;
+  document.querySelectorAll('.demo-star').forEach((s, i) => {
+    if (i < stars) { s.classList.add('active'); s.textContent = '★'; }
+    else { s.classList.remove('active'); s.textContent = '☆'; }
+  });
+  document.getElementById('resultBox').classList.remove('show');
+}
+
+async function generateReply() {
+  const apiKey = document.getElementById('apiKey').value;
+  const review = document.getElementById('reviewInput').value.trim();
+  const btn = document.getElementById('generateBtn');
+  const errEl = document.getElementById('errorMsg');
+  const resultBox = document.getElementById('resultBox');
+  
+  errEl.classList.remove('show');
+  resultBox.classList.remove('show');
+
+  if (!apiKey.startsWith('sk-ant-')) {
+    errEl.textContent = 'Please enter your Anthropic API key above.';
+    errEl.classList.add('show');
+    return;
+  }
+  if (!review) {
+    errEl.textContent = 'Paste a review first.';
+    errEl.classList.add('show');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Writing your reply...';
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 500,
+        messages: [{
+          role: 'user',
+          content: `Write a short, professional response to this ${currentStars}-star Google review for a small business. Keep it under 80 words. Be genuine, not corporate. If negative: apologize, offer to fix it. If positive: thank them warmly. Write ONLY the reply text, nothing else.\n\nReview: "${review}"`
+        }]
+      })
+    });
+
+    if (!res.ok) throw new Error('API error — check your key and try again.');
+    const data = await res.json();
+    document.getElementById('resultText').textContent = data.content[0].text;
+    resultBox.classList.add('show');
+  } catch (e) {
+    errEl.textContent = e.message;
+    errEl.classList.add('show');
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Generate reply';
+}
+
+function copyReply() {
+  const text = document.getElementById('resultText').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.demo-copy');
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 2000);
+  });
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+
+</body>
+</html>
