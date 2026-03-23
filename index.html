@@ -4,22 +4,64 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ReviewReply — AI Review Responses for Small Businesses</title>
-<meta name="description" content="Stop stressing over negative reviews. Paste any Google or Yelp review and get a perfect, professional response in seconds. Built for small businesses.">
+<meta name="description" content="Paste any Google or Yelp review and get a professional, ready-to-post response in seconds. 3 free tries, no signup needed. Built for small businesses.">
+<meta name="keywords" content="AI review response, Google review reply, Yelp review response, small business reviews, review management, reply to negative reviews">
+<meta property="og:title" content="ReviewReply — AI Review Responses in Seconds">
+<meta property="og:description" content="Paste any customer review and get a professional, ready-to-post response in seconds. Built for small businesses.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://reviewreply.dev">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ReviewReply — AI Review Responses in Seconds">
+<meta name="twitter:description" content="Paste any customer review and get a professional, ready-to-post response in seconds. Built for small businesses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
-  
+  :root {
+    --bg: #08080d;
+    --surface: #101018;
+    --surface-border: #1a1a28;
+    --accent: #6366f1;
+    --accent-hover: #5558e6;
+    --accent-glow: rgba(99, 102, 241, 0.12);
+    --text: #e4e4ec;
+    --text-muted: #7a7a8e;
+    --text-dim: #4a4a5e;
+    --success: #34d399;
+    --success-bg: rgba(52, 211, 153, 0.08);
+    --success-border: rgba(52, 211, 153, 0.2);
+    --danger: #f87171;
+    --radius: 14px;
+    --radius-sm: 10px;
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  
+
   body {
-    font-family: 'DM Sans', -apple-system, sans-serif;
-    background: #0a0a0f;
-    color: #e8e8ed;
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: -40%;
+    left: -20%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(ellipse, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
   }
 
   /* NAV */
   nav {
+    position: relative;
+    z-index: 10;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,405 +77,714 @@
     font-size: 18px;
     color: #fff;
     text-decoration: none;
+    letter-spacing: -0.3px;
   }
   .logo-icon {
-    width: 32px; height: 32px;
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    width: 34px; height: 34px;
+    background: linear-gradient(135deg, #6366f1, #818cf8);
     border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
+    font-size: 15px;
+    box-shadow: 0 2px 12px rgba(99, 102, 241, 0.3);
   }
-  .nav-cta {
-    padding: 10px 20px;
-    background: #6366f1;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .nav-link {
+    color: var(--text-muted);
     text-decoration: none;
-    transition: background 0.2s;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
   }
-  .nav-cta:hover { background: #5558e6; }
-
-  /* HERO */
-  .hero {
-    max-width: 720px;
-    margin: 60px auto 0;
-    text-align: center;
-    padding: 0 24px;
-  }
-  .badge {
-    display: inline-block;
-    padding: 6px 16px;
-    background: rgba(99, 102, 241, 0.15);
-    border: 1px solid rgba(99, 102, 241, 0.3);
-    border-radius: 50px;
-    font-size: 13px;
-    color: #a5b4fc;
-    margin-bottom: 24px;
-  }
-  h1 {
-    font-size: clamp(32px, 5vw, 52px);
-    font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: -1px;
-    margin-bottom: 20px;
-  }
-  h1 span { color: #6366f1; }
-  .hero p {
-    font-size: 18px;
-    color: #888;
-    max-width: 520px;
-    margin: 0 auto 36px;
-  }
-  .hero-cta {
-    display: inline-block;
-    padding: 14px 32px;
-    background: #6366f1;
+  .nav-link:hover { color: #fff; }
+  .nav-cta {
+    padding: 10px 22px;
+    background: var(--accent);
     color: #fff;
     border: none;
-    border-radius: 10px;
-    font-size: 16px;
+    border-radius: 9px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     text-decoration: none;
     transition: all 0.2s;
+    box-shadow: 0 2px 12px rgba(99, 102, 241, 0.25);
   }
-  .hero-cta:hover { background: #5558e6; transform: translateY(-1px); }
+  .nav-cta:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
-  /* SOCIAL PROOF */
+  /* HERO */
+  .hero {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 72px auto 0;
+    text-align: center;
+    padding: 0 24px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    background: var(--accent-glow);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #a5b4fc;
+    margin-bottom: 28px;
+  }
+  .badge-dot {
+    width: 6px; height: 6px;
+    background: #6366f1;
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  h1 {
+    font-size: clamp(34px, 5vw, 54px);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -1.5px;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, #6366f1, #a78bfa, #6366f1);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 6s ease-in-out infinite;
+  }
+  @keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  .hero p {
+    font-size: 17px;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+  }
+  .hero-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 30px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+  }
+  .hero-cta:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(99, 102, 241, 0.35); }
+  .hero-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 30px;
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .hero-secondary:hover { border-color: #333; color: #fff; }
+
+  /* SOCIAL PROOF — ROTATING */
   .proof {
     text-align: center;
-    margin: 48px auto 0;
+    margin: 56px auto 0;
     padding: 0 24px;
-    color: #555;
-    font-size: 14px;
+    color: var(--text-dim);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
-  .proof strong { color: #888; }
+  .proof-rotator {
+    margin-top: 16px;
+    height: 32px;
+    overflow: hidden;
+    position: relative;
+  }
+  .proof-track {
+    display: flex;
+    flex-direction: column;
+    animation: rotateTypes 15s ease-in-out infinite;
+  }
+  .proof-slide {
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--text-muted);
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .proof-slide span { font-size: 20px; }
+  @keyframes rotateTypes {
+    0%, 16%    { transform: translateY(0); }
+    20%, 36%   { transform: translateY(-32px); }
+    40%, 56%   { transform: translateY(-64px); }
+    60%, 76%   { transform: translateY(-96px); }
+    80%, 96%   { transform: translateY(-128px); }
+    100%       { transform: translateY(-160px); }
+  }
+
+  /* SECTIONS */
+  .section-label {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    margin-bottom: 16px;
+    color: #fff;
+  }
+  .section-desc {
+    text-align: center;
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 0 auto 48px;
+  }
 
   /* HOW IT WORKS */
   .how {
+    position: relative;
+    z-index: 1;
     max-width: 900px;
-    margin: 80px auto 0;
+    margin: 100px auto 0;
     padding: 0 24px;
-  }
-  .how h2 {
-    text-align: center;
-    font-size: 28px;
-    margin-bottom: 48px;
-    font-weight: 700;
   }
   .steps {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
   }
   .step {
-    background: #12121a;
-    border: 1px solid #1e1e2e;
-    border-radius: 14px;
-    padding: 28px 24px;
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius);
+    padding: 32px 24px;
+    transition: all 0.3s;
   }
+  .step:hover { border-color: rgba(99, 102, 241, 0.3); transform: translateY(-2px); }
   .step-num {
-    width: 36px; height: 36px;
-    background: rgba(99, 102, 241, 0.15);
-    border-radius: 10px;
+    width: 40px; height: 40px;
+    background: var(--accent-glow);
+    border-radius: 11px;
     display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 16px; color: #6366f1;
-    margin-bottom: 16px;
+    font-weight: 700; font-size: 16px; color: var(--accent);
+    margin-bottom: 20px;
   }
-  .step h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
-  .step p { font-size: 14px; color: #777; }
+  .step h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: #fff; }
+  .step p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
 
-  /* PRICING */
-  .pricing {
-    max-width: 420px;
-    margin: 80px auto 0;
-    padding: 0 24px;
-    text-align: center;
-  }
-  .pricing h2 {
-    font-size: 28px;
-    margin-bottom: 12px;
-    font-weight: 700;
-  }
-  .pricing > p {
-    color: #777;
-    margin-bottom: 32px;
-    font-size: 15px;
-  }
-  .price-card {
-    background: #12121a;
-    border: 2px solid #6366f1;
-    border-radius: 16px;
-    padding: 36px 28px;
-    text-align: center;
-  }
-  .price-amount {
-    font-size: 48px;
-    font-weight: 700;
-    color: #fff;
-  }
-  .price-amount span { font-size: 18px; color: #888; font-weight: 400; }
-  .price-desc {
-    color: #888;
-    font-size: 15px;
-    margin: 8px 0 24px;
-  }
-  .price-features {
-    list-style: none;
-    text-align: left;
-    margin-bottom: 28px;
-  }
-  .price-features li {
-    padding: 8px 0;
-    font-size: 14px;
-    color: #aaa;
-    border-bottom: 1px solid #1e1e2e;
-  }
-  .price-features li:last-child { border: none; }
-  .price-features li::before {
-    content: "✓ ";
-    color: #6366f1;
-    font-weight: 700;
-  }
-  .price-cta {
-    display: block;
-    width: 100%;
-    padding: 14px;
-    background: #6366f1;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s;
-    text-decoration: none;
-    text-align: center;
-  }
-  .price-cta:hover { background: #5558e6; }
-
-  /* DEMO SECTION */
+  /* DEMO */
   .demo {
-    max-width: 600px;
-    margin: 80px auto 0;
+    position: relative;
+    z-index: 1;
+    max-width: 620px;
+    margin: 100px auto 0;
     padding: 0 24px;
-  }
-  .demo h2 {
-    text-align: center;
-    font-size: 28px;
-    margin-bottom: 12px;
-    font-weight: 700;
-  }
-  .demo > p {
-    text-align: center;
-    color: #777;
-    margin-bottom: 32px;
-    font-size: 15px;
   }
   .demo-box {
-    background: #12121a;
-    border: 1px solid #1e1e2e;
-    border-radius: 16px;
-    padding: 28px;
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: 18px;
+    padding: 32px;
   }
   .demo-label {
     display: block;
     font-size: 12px;
     font-weight: 600;
-    color: #888;
-    margin-bottom: 6px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
   }
   .demo-stars {
     display: flex;
-    gap: 4px;
-    margin-bottom: 16px;
+    gap: 6px;
+    margin-bottom: 20px;
   }
   .demo-star {
-    width: 36px; height: 36px;
+    width: 38px; height: 38px;
     font-size: 18px;
-    border-radius: 8px;
-    border: 1px solid #2a2a3a;
-    background: #1a1a24;
+    border-radius: 9px;
+    border: 1px solid var(--surface-border);
+    background: var(--bg);
     cursor: pointer;
-    color: #555;
+    color: var(--text-dim);
     transition: all 0.15s;
   }
+  .demo-star:hover { border-color: var(--accent); }
   .demo-star.active {
-    background: #6366f1;
-    border-color: #6366f1;
+    background: var(--accent);
+    border-color: var(--accent);
     color: #fff;
   }
   .demo-textarea {
     width: 100%;
-    min-height: 100px;
-    padding: 12px;
+    min-height: 110px;
+    padding: 14px;
     font-size: 14px;
     font-family: inherit;
-    background: #0d0d15;
-    border: 1px solid #2a2a3a;
-    border-radius: 10px;
-    color: #eee;
+    background: var(--bg);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
     outline: none;
     resize: vertical;
-    line-height: 1.6;
-    margin-bottom: 8px;
+    line-height: 1.7;
+    margin-bottom: 10px;
+    transition: border-color 0.2s;
   }
-  .demo-textarea:focus { border-color: #6366f1; }
-  .demo-textarea::placeholder { color: #444; }
+  .demo-textarea:focus { border-color: var(--accent); }
+  .demo-textarea::placeholder { color: var(--text-dim); }
   .demo-samples {
     display: flex;
-    gap: 6px;
-    margin-bottom: 16px;
+    gap: 8px;
+    margin-bottom: 20px;
     flex-wrap: wrap;
+    align-items: center;
   }
+  .demo-samples-label { font-size: 12px; color: var(--text-dim); }
   .demo-sample {
-    padding: 5px 12px;
+    padding: 6px 14px;
     font-size: 12px;
     background: transparent;
-    border: 1px solid #2a2a3a;
-    border-radius: 6px;
-    color: #777;
+    border: 1px solid var(--surface-border);
+    border-radius: 7px;
+    color: var(--text-muted);
     cursor: pointer;
     font-family: inherit;
     transition: all 0.15s;
   }
-  .demo-sample:hover { border-color: #6366f1; color: #aaa; }
+  .demo-sample:hover { border-color: var(--accent); color: #fff; }
   .demo-btn {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     font-size: 15px;
     font-weight: 600;
     font-family: inherit;
-    background: #6366f1;
+    background: var(--accent);
     color: #fff;
     border: none;
-    border-radius: 10px;
+    border-radius: var(--radius-sm);
     cursor: pointer;
     transition: all 0.2s;
+    box-shadow: 0 2px 12px rgba(99, 102, 241, 0.2);
   }
-  .demo-btn:hover { background: #5558e6; }
-  .demo-btn:disabled { background: #2a2a3a; color: #555; cursor: not-allowed; }
+  .demo-btn:hover { background: var(--accent-hover); }
+  .demo-btn:disabled { background: #1e1e2e; color: var(--text-dim); cursor: not-allowed; box-shadow: none; }
+  .demo-limit {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 10px;
+  }
   .demo-result {
-    margin-top: 20px;
-    background: #0a1a0a;
-    border: 1px solid #1a3a1a;
-    border-radius: 10px;
-    padding: 16px;
+    margin-top: 24px;
+    background: var(--success-bg);
+    border: 1px solid var(--success-border);
+    border-radius: var(--radius-sm);
+    padding: 20px;
     display: none;
+    animation: fadeIn 0.3s ease;
   }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
   .demo-result.show { display: block; }
   .demo-result-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
   .demo-result-label {
     font-size: 12px;
     font-weight: 600;
-    color: #4ade80;
+    color: var(--success);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
   }
   .demo-copy {
-    padding: 5px 12px;
+    padding: 6px 14px;
     font-size: 12px;
     background: transparent;
-    border: 1px solid #1a3a1a;
-    border-radius: 6px;
-    color: #4ade80;
+    border: 1px solid var(--success-border);
+    border-radius: 7px;
+    color: var(--success);
     cursor: pointer;
     font-family: inherit;
+    transition: all 0.15s;
   }
-  .demo-result p {
-    font-size: 14px;
-    line-height: 1.7;
-    color: #ccc;
-  }
-  .demo-error {
-    color: #ef4444;
-    font-size: 13px;
-    margin-top: 8px;
+  .demo-copy:hover { background: rgba(52, 211, 153, 0.1); }
+  .demo-result p { font-size: 14px; line-height: 1.8; color: #ccc; }
+  .demo-error { color: var(--danger); font-size: 13px; margin-top: 10px; display: none; }
+  .demo-error.show { display: block; }
+  .demo-upsell {
+    margin-top: 20px;
+    padding: 20px;
+    background: var(--accent-glow);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: var(--radius-sm);
+    text-align: center;
     display: none;
   }
-  .demo-error.show { display: block; }
+  .demo-upsell.show { display: block; animation: fadeIn 0.3s ease; }
+  .demo-upsell p { font-size: 14px; color: var(--text-muted); margin-bottom: 14px; line-height: 1.6; }
+  .demo-upsell a {
+    display: inline-block;
+    padding: 12px 28px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 9px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s;
+    box-shadow: 0 2px 12px rgba(99, 102, 241, 0.25);
+  }
+  .demo-upsell a:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+  /* PRICING */
+  .pricing {
+    position: relative;
+    z-index: 1;
+    max-width: 520px;
+    margin: 100px auto 0;
+    padding: 0 24px;
+  }
+  .price-toggle {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 32px;
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: 10px;
+    padding: 4px;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .price-toggle-btn {
+    flex: 1;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: transparent;
+    color: var(--text-muted);
+    transition: all 0.2s;
+  }
+  .price-toggle-btn.active {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+  }
+  .price-toggle-btn:not(.active):hover { color: #fff; }
+  .save-badge {
+    font-size: 11px;
+    background: rgba(52, 211, 153, 0.15);
+    color: var(--success);
+    padding: 2px 8px;
+    border-radius: 50px;
+    margin-left: 4px;
+    font-weight: 600;
+  }
+  .price-card {
+    background: var(--surface);
+    border: 2px solid var(--accent);
+    border-radius: 20px;
+    padding: 40px 32px;
+    text-align: center;
+    box-shadow: 0 8px 40px rgba(99, 102, 241, 0.1);
+  }
+  .price-plan-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .price-amount {
+    font-size: 52px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .price-amount span { font-size: 18px; color: var(--text-muted); font-weight: 400; letter-spacing: 0; }
+  .price-yearly-note {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    display: none;
+  }
+  .price-desc {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin: 16px 0 28px;
+    line-height: 1.5;
+  }
+  .price-features { list-style: none; text-align: left; margin-bottom: 32px; }
+  .price-features li {
+    padding: 10px 0;
+    font-size: 14px;
+    color: var(--text);
+    border-bottom: 1px solid var(--surface-border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .price-features li:last-child { border: none; }
+  .check-icon {
+    width: 20px; height: 20px;
+    background: var(--accent-glow);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--accent);
+    flex-shrink: 0;
+  }
+  .price-cta {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.25);
+  }
+  .price-cta:hover { background: var(--accent-hover); transform: translateY(-1px); }
+  .price-guarantee {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* FAQ */
+  .faq {
+    position: relative;
+    z-index: 1;
+    max-width: 620px;
+    margin: 100px auto 0;
+    padding: 0 24px;
+  }
+  .faq-item { border-bottom: 1px solid var(--surface-border); padding: 20px 0; }
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+  }
+  .faq-q:hover { color: var(--accent); }
+  .faq-arrow { font-size: 18px; color: var(--text-dim); transition: transform 0.2s; }
+  .faq-item.open .faq-arrow { transform: rotate(45deg); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+  .faq-item.open .faq-a { max-height: 200px; padding-top: 12px; }
+  .faq-a p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+  /* FINAL CTA */
+  .final-cta {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin: 100px auto 0;
+    padding: 48px 32px;
+    text-align: center;
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: 20px;
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+  @media (min-width: 700px) { .final-cta { margin-left: auto; margin-right: auto; } }
+  .final-cta h2 { font-size: 28px; font-weight: 800; letter-spacing: -0.8px; margin-bottom: 12px; color: #fff; }
+  .final-cta p { color: var(--text-muted); font-size: 15px; margin-bottom: 28px; }
+  .final-cta a {
+    display: inline-block;
+    padding: 14px 32px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.25);
+  }
+  .final-cta a:hover { background: var(--accent-hover); transform: translateY(-2px); }
 
   /* FOOTER */
   footer {
+    position: relative;
+    z-index: 1;
     max-width: 1100px;
     margin: 80px auto 0;
     padding: 32px 24px;
-    border-top: 1px solid #1a1a2a;
+    border-top: 1px solid var(--surface-border);
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 12px;
   }
-  footer p { font-size: 13px; color: #444; }
-  footer a { color: #555; text-decoration: none; font-size: 13px; margin-left: 20px; }
-  footer a:hover { color: #888; }
+  footer p { font-size: 13px; color: var(--text-dim); }
+  .footer-links { display: flex; gap: 24px; }
+  footer a { color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.2s; }
+  footer a:hover { color: #fff; }
 
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     nav { padding: 16px 20px; }
-    .hero { margin-top: 40px; }
+    .nav-links { gap: 16px; }
+    .nav-link { display: none; }
+    .hero { margin-top: 48px; }
     .steps { grid-template-columns: 1fr; }
+    .hero-buttons { flex-direction: column; align-items: center; }
+    .proof-slide { font-size: 14px; }
+    .final-cta { margin-left: 16px; margin-right: 16px; }
     footer { flex-direction: column; text-align: center; }
-    footer a { margin: 0 10px; }
+    .footer-links { gap: 20px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero { margin-top: 36px; }
+    h1 { letter-spacing: -1px; }
+    .hero p { font-size: 15px; }
+    .demo-box { padding: 24px 20px; }
+    .price-card { padding: 32px 24px; }
+    .section-title { font-size: 26px; }
   }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="#" class="logo">
-    <div class="logo-icon">★</div>
+  <a href="/" class="logo">
+    <div class="logo-icon">⬡</div>
     ReviewReply
   </a>
-  <a href="#try" class="nav-cta">Try it free</a>
+  <div class="nav-links">
+    <a href="#how" class="nav-link">How it works</a>
+    <a href="#pricing" class="nav-link">Pricing</a>
+    <a href="#faq" class="nav-link">FAQ</a>
+    <a href="#try" class="nav-cta">Try it free</a>
+  </div>
 </nav>
 
 <section class="hero">
-  <div class="badge">AI-powered review responses</div>
-  <h1>Stop stressing over <span>negative reviews</span></h1>
-  <p>Paste any Google or Yelp review and get a perfect, professional response in seconds. Built for busy small business owners.</p>
-  <a href="#try" class="hero-cta">Try it free — no signup needed</a>
+  <div class="badge">
+    <span class="badge-dot"></span>
+    AI-powered review responses
+  </div>
+  <h1>Never stress over a<br><span class="gradient-text">bad review</span> again</h1>
+  <p>Paste any customer review and get a professional, ready-to-post response in seconds. No learning curve. No AI experience needed.</p>
+  <div class="hero-buttons">
+    <a href="#try" class="hero-cta">Try it free →</a>
+    <a href="#how" class="hero-secondary">See how it works</a>
+  </div>
 </section>
 
 <div class="proof">
-  <p>Built for <strong>restaurants</strong>, <strong>dentists</strong>, <strong>salons</strong>, <strong>contractors</strong>, and every local business that gets reviews.</p>
+  <p>Built for local businesses</p>
+  <div class="proof-rotator">
+    <div class="proof-track">
+      <div class="proof-slide"><span>🍽</span> Restaurants &amp; Cafés</div>
+      <div class="proof-slide"><span>💇</span> Hair Salons &amp; Barbershops</div>
+      <div class="proof-slide"><span>🦷</span> Dentists &amp; Medical Offices</div>
+      <div class="proof-slide"><span>🔧</span> Contractors &amp; Home Services</div>
+      <div class="proof-slide"><span>🏪</span> Retail Shops &amp; Boutiques</div>
+      <div class="proof-slide"><span>🍽</span> Restaurants &amp; Cafés</div>
+    </div>
+  </div>
 </div>
 
-<section class="how">
-  <h2>How it works</h2>
+<section class="how" id="how">
+  <p class="section-label">How it works</p>
+  <h2 class="section-title">Three steps. Ten seconds.</h2>
+  <p class="section-desc">Just paste, click, and reply. That's it.</p>
   <div class="steps">
     <div class="step">
       <div class="step-num">1</div>
       <h3>Paste the review</h3>
-      <p>Copy any customer review from Google, Yelp, or Facebook and paste it into ReviewReply.</p>
+      <p>Copy any customer review from Google, Yelp, or Facebook and paste it in.</p>
     </div>
     <div class="step">
       <div class="step-num">2</div>
       <h3>Get your reply</h3>
-      <p>Our AI writes a professional, empathetic response tailored to the specific review in seconds.</p>
+      <p>AI writes a professional, human-sounding response tailored to that specific review.</p>
     </div>
     <div class="step">
       <div class="step-num">3</div>
-      <h3>Copy and post</h3>
-      <p>Copy the response and paste it directly into Google or Yelp. Done in under 10 seconds.</p>
+      <h3>Post it</h3>
+      <p>Copy the response and paste it directly into Google, Yelp, or Facebook. Done.</p>
     </div>
   </div>
 </section>
 
 <section class="demo" id="try">
-  <h2>Try it right now</h2>
-  <p>No signup needed. See how it works instantly.</p>
+  <p class="section-label">Try it now</p>
+  <h2 class="section-title">See it in action</h2>
+  <p class="section-desc">3 free tries. No signup needed.</p>
   <div class="demo-box">
     <label class="demo-label">Star rating</label>
     <div class="demo-stars" id="stars">
@@ -448,96 +799,195 @@
     <textarea class="demo-textarea" id="reviewInput" placeholder="Paste the customer review here..."></textarea>
 
     <div class="demo-samples">
-      <span style="font-size:12px;color:#444;line-height:28px;">Try:</span>
-      <button class="demo-sample" onclick="loadSample(1)">Angry 1-star</button>
-      <button class="demo-sample" onclick="loadSample(5)">Happy 5-star</button>
-      <button class="demo-sample" onclick="loadSample(2)">Mixed 2-star</button>
+      <span class="demo-samples-label">Try a sample:</span>
+      <button class="demo-sample" onclick="loadSample('angry_restaurant')">Angry restaurant</button>
+      <button class="demo-sample" onclick="loadSample('happy_salon')">Happy salon</button>
+      <button class="demo-sample" onclick="loadSample('mixed_dentist')">Mixed dentist</button>
+      <button class="demo-sample" onclick="loadSample('angry_contractor')">Angry contractor</button>
+      <button class="demo-sample" onclick="loadSample('happy_barber')">Happy barber</button>
     </div>
 
     <button class="demo-btn" id="generateBtn" onclick="generateReply()">Generate reply</button>
+    <div class="demo-limit" id="demoLimit"></div>
     <div class="demo-error" id="errorMsg"></div>
 
     <div class="demo-result" id="resultBox">
       <div class="demo-result-header">
-        <span class="demo-result-label">Your reply is ready</span>
+        <span class="demo-result-label">✓ Your reply is ready</span>
         <button class="demo-copy" onclick="copyReply()">Copy</button>
       </div>
       <p id="resultText"></p>
+    </div>
+
+    <div class="demo-upsell" id="upsellBox">
+      <p>You've used your 3 free tries.<br>Get unlimited replies for less than a coffee a week.</p>
+      <a href="#pricing">Get unlimited replies — $9/mo</a>
     </div>
   </div>
 </section>
 
 <section class="pricing" id="pricing">
-  <h2>Simple pricing</h2>
-  <p>One plan. Unlimited replies. Cancel anytime.</p>
+  <p class="section-label">Pricing</p>
+  <h2 class="section-title">One plan. Unlimited replies.</h2>
+  <p class="section-desc">Everything you need to respond to every review. Cancel anytime.</p>
+
+  <div class="price-toggle">
+    <button class="price-toggle-btn active" onclick="setPricing('monthly')">Monthly</button>
+    <button class="price-toggle-btn" onclick="setPricing('yearly')">Yearly <span class="save-badge">Save 27%</span></button>
+  </div>
+
   <div class="price-card">
-    <div class="price-amount">$9<span>/month</span></div>
-    <div class="price-desc">Everything you need to manage review responses.</div>
+    <div class="price-plan-name">Unlimited</div>
+    <div class="price-amount" id="priceDisplay">$9<span>/month</span></div>
+    <div class="price-yearly-note" id="yearlyNote">Billed as $79/year</div>
+    <p class="price-desc">Unlimited AI-powered review responses for your business.</p>
     <ul class="price-features">
-      <li>Unlimited AI review responses</li>
-      <li>Works with Google, Yelp, Facebook reviews</li>
-      <li>Professional, empathetic tone</li>
-      <li>Customizable response style</li>
-      <li>Copy and paste in seconds</li>
-      <li>Cancel anytime — no contracts</li>
+      <li><span class="check-icon">✓</span> Unlimited review responses</li>
+      <li><span class="check-icon">✓</span> Google, Yelp, and Facebook reviews</li>
+      <li><span class="check-icon">✓</span> Responses that sound like you wrote them</li>
+      <li><span class="check-icon">✓</span> One-click copy and paste</li>
+      <li><span class="check-icon">✓</span> Response in under 5 seconds</li>
+      <li><span class="check-icon">✓</span> Cancel anytime — no contracts, no hassle</li>
     </ul>
-    <a href="#try" class="price-cta">Start free trial</a>
+    <a href="#try" class="price-cta">Try it free</a>
+    <p class="price-guarantee">3 free tries included · No credit card required · Cancel anytime</p>
   </div>
 </section>
 
+<section class="faq" id="faq">
+  <p class="section-label">FAQ</p>
+  <h2 class="section-title">Common questions</h2>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">How does ReviewReply work?<span class="faq-arrow">+</span></button>
+    <div class="faq-a"><p>Paste a customer review from Google, Yelp, or Facebook. Select the star rating. Click one button. You'll have a professional, ready-to-post response in about 5 seconds. Copy it, paste it into your review platform, and you're done.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">Can I edit the responses before posting?<span class="faq-arrow">+</span></button>
+    <div class="faq-a"><p>Absolutely. Every response is a starting point — add personal details, adjust the wording, or use it exactly as-is. You're always in control of what gets posted.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">Why not just use ChatGPT?<span class="faq-arrow">+</span></button>
+    <div class="faq-a"><p>You could — but you'd need to write a good prompt every time, and you'd get wildly different quality depending on how you phrase it. ReviewReply gives you consistent, professional results with one click. Same quality every time, zero learning curve. It's the difference between cooking from scratch and having a chef on speed dial.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">How do I cancel?<span class="faq-arrow">+</span></button>
+    <div class="faq-a"><p>One click from your account page, no questions asked. Your subscription stays active until the end of your billing period — you won't lose access the moment you cancel. No hoops, no phone calls, no guilt trips.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">Is my data safe?<span class="faq-arrow">+</span></button>
+    <div class="faq-a"><p>We don't store the reviews you paste or the responses generated — everything is processed in real-time and not saved. Payments are handled securely by Stripe. Read our full Privacy Policy for details.</p></div>
+  </div>
+</section>
+
+<div class="final-cta">
+  <h2>Your next review is waiting.<br>Respond in 10 seconds.</h2>
+  <p>Hundreds of potential customers read your reviews before walking through the door. Every unanswered review is a missed opportunity.</p>
+  <a href="#try">Try it free →</a>
+</div>
+
 <footer>
   <p>&copy; 2026 ReviewReply. All rights reserved.</p>
-  <div>
-    <a href="#">Terms</a>
-    <a href="#">Privacy</a>
+  <div class="footer-links">
+    <a href="/terms.html">Terms of Service</a>
+    <a href="/privacy.html">Privacy Policy</a>
   </div>
 </footer>
 
 <script>
 let currentStars = 1;
+const FREE_LIMIT = 3;
+const STORAGE_KEY = 'rr_demo_uses';
+
+function getUsesLeft() {
+  const used = parseInt(localStorage.getItem(STORAGE_KEY) || '0');
+  return Math.max(0, FREE_LIMIT - used);
+}
+
+function incrementUses() {
+  const used = parseInt(localStorage.getItem(STORAGE_KEY) || '0');
+  localStorage.setItem(STORAGE_KEY, used + 1);
+}
+
+function updateLimitDisplay() {
+  const left = getUsesLeft();
+  const el = document.getElementById('demoLimit');
+  if (left <= 0) {
+    el.textContent = '';
+    document.getElementById('generateBtn').disabled = true;
+    document.getElementById('generateBtn').textContent = 'No free tries left';
+    document.getElementById('upsellBox').classList.add('show');
+  } else {
+    el.textContent = left + ' free ' + (left === 1 ? 'try' : 'tries') + ' remaining';
+  }
+}
+
+updateLimitDisplay();
 
 // Star rating
 document.querySelectorAll('.demo-star').forEach(btn => {
   btn.addEventListener('click', () => {
     currentStars = parseInt(btn.dataset.val);
     document.querySelectorAll('.demo-star').forEach((s, i) => {
-      if (i < currentStars) {
-        s.classList.add('active');
-        s.textContent = '★';
-      } else {
-        s.classList.remove('active');
-        s.textContent = '☆';
-      }
+      if (i < currentStars) { s.classList.add('active'); s.textContent = '★'; }
+      else { s.classList.remove('active'); s.textContent = '☆'; }
     });
   });
 });
 
-function loadSample(stars) {
+// Sample reviews by business type
+function loadSample(type) {
   const samples = {
-    1: "Waited 45 minutes past my appointment. Receptionist was rude when I asked about the delay. The service itself was rushed and they didn't explain anything. Won't be coming back.",
-    5: "Amazing experience! The staff was incredibly friendly and professional. They took the time to explain everything and made me feel comfortable. Highly recommend to anyone!",
-    2: "Food was decent but service was painfully slow. Waited 30 minutes for drinks and over an hour for entrees. Our waiter forgot our appetizer. Manager did comp dessert which was nice."
+    angry_restaurant: { stars: 1, text: "Waited 45 minutes for our food and when it finally came, my steak was completely overcooked. Asked the waiter to fix it and he just shrugged. The manager never came over. Absolutely terrible experience for a $120 dinner." },
+    happy_salon: { stars: 5, text: "Maria did an incredible job on my highlights! She really listened to what I wanted and nailed the color perfectly. The salon is always so clean and welcoming. I've been coming here for two years and I'm never going anywhere else." },
+    mixed_dentist: { stars: 3, text: "Dr. Patel is great — very thorough and explains everything clearly. But the front desk is a different story. They double-booked my appointment, I waited 40 minutes, and nobody apologized. Fix the scheduling and this would be 5 stars." },
+    angry_contractor: { stars: 1, text: "Hired them to remodel our bathroom. They showed up 3 hours late on day one, then didn't come back for a week with no communication. The tile work is uneven and they left a mess. Had to hire someone else to fix their mistakes." },
+    happy_barber: { stars: 5, text: "Best barbershop in town, hands down. Tony always gets my fade exactly right and the hot towel treatment is a nice touch. Great conversation, fair prices, and I never have to wait long. Been coming here every two weeks for a year." }
   };
-  document.getElementById('reviewInput').value = samples[stars];
-  currentStars = stars;
+
+  const sample = samples[type];
+  if (!sample) return;
+
+  document.getElementById('reviewInput').value = sample.text;
+  currentStars = sample.stars;
+
   document.querySelectorAll('.demo-star').forEach((s, i) => {
-    if (i < stars) { s.classList.add('active'); s.textContent = '★'; }
+    if (i < sample.stars) { s.classList.add('active'); s.textContent = '★'; }
     else { s.classList.remove('active'); s.textContent = '☆'; }
   });
+
   document.getElementById('resultBox').classList.remove('show');
+  document.getElementById('errorMsg').classList.remove('show');
 }
 
+// Generate reply
 async function generateReply() {
+  if (getUsesLeft() <= 0) {
+    document.getElementById('upsellBox').classList.add('show');
+    return;
+  }
+
   const review = document.getElementById('reviewInput').value.trim();
+  const stars = currentStars;
   const btn = document.getElementById('generateBtn');
   const errEl = document.getElementById('errorMsg');
   const resultBox = document.getElementById('resultBox');
-  
+
   errEl.classList.remove('show');
   resultBox.classList.remove('show');
 
   if (!review) {
     errEl.textContent = 'Paste a review first.';
+    errEl.classList.add('show');
+    return;
+  }
+
+  if (review.length < 15) {
+    errEl.textContent = 'That looks too short to be a review. Paste a full customer review.';
     errEl.classList.add('show');
     return;
   }
@@ -549,26 +999,35 @@ async function generateReply() {
     const res = await fetch('/api/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ review, stars: currentStars })
+      body: JSON.stringify({ review, stars })
     });
 
-    const data = await res.json();
-
     if (!res.ok) {
-      throw new Error(data.error || 'Something went wrong. Please try again.');
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.error || 'Something went wrong. Please try again in a moment.');
     }
 
+    const data = await res.json();
     document.getElementById('resultText').textContent = data.reply;
     resultBox.classList.add('show');
+    incrementUses();
+    updateLimitDisplay();
   } catch (e) {
-    errEl.textContent = e.message;
+    if (e.message.includes('Failed to fetch') || e.message.includes('NetworkError')) {
+      errEl.textContent = 'Connection issue — please check your internet and try again.';
+    } else {
+      errEl.textContent = e.message;
+    }
     errEl.classList.add('show');
   }
 
-  btn.disabled = false;
-  btn.textContent = 'Generate reply';
+  if (getUsesLeft() > 0) {
+    btn.disabled = false;
+    btn.textContent = 'Generate reply';
+  }
 }
 
+// Copy reply
 function copyReply() {
   const text = document.getElementById('resultText').textContent;
   navigator.clipboard.writeText(text).then(() => {
@@ -578,11 +1037,35 @@ function copyReply() {
   });
 }
 
+// Pricing toggle
+function setPricing(period) {
+  const btns = document.querySelectorAll('.price-toggle-btn');
+  btns.forEach(b => b.classList.remove('active'));
+  if (period === 'monthly') {
+    btns[0].classList.add('active');
+    document.getElementById('priceDisplay').innerHTML = '$9<span>/month</span>';
+    document.getElementById('yearlyNote').style.display = 'none';
+  } else {
+    btns[1].classList.add('active');
+    document.getElementById('priceDisplay').innerHTML = '$6.58<span>/month</span>';
+    document.getElementById('yearlyNote').style.display = 'block';
+  }
+}
+
+// FAQ accordion
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
 // Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     e.preventDefault();
-    document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
   });
 });
 </script>
