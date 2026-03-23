@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — ReviewReply</title>
+<meta name="description" content="Privacy Policy for ReviewReply — how we collect, use, and protect your information.">
+<meta property="og:title" content="Privacy Policy — ReviewReply">
+<meta property="og:description" content="Privacy Policy for ReviewReply — how we collect, use, and protect your information.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://reviewreply.dev/privacy.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #08080d;
+    --surface: #101018;
+    --surface-border: #1a1a28;
+    --accent: #6366f1;
+    --accent-hover: #5558e6;
+    --text: #e4e4ec;
+    --text-muted: #7a7a8e;
+    --text-dim: #4a4a5e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    top: -40%;
+    left: -20%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(ellipse, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: -0.3px;
+  }
+  .logo-icon {
+    width: 34px; height: 34px;
+    background: linear-gradient(135deg, #6366f1, #818cf8);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    box-shadow: 0 2px 12px rgba(99, 102, 241, 0.3);
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .nav-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-link:hover { color: #fff; }
+  .nav-cta {
+    padding: 10px 22px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 2px 12px rgba(99, 102, 241, 0.25);
+  }
+  .nav-cta:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+  /* CONTENT */
+  .content {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 60px auto;
+    padding: 0 24px;
+  }
+  .content h1 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+  .last-updated {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-bottom: 40px;
+  }
+  .content h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin: 36px 0 12px;
+  }
+  .content h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ccc;
+    margin: 24px 0 8px;
+  }
+  .content p, .content li {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    line-height: 1.8;
+  }
+  .content ul {
+    padding-left: 24px;
+    margin-bottom: 16px;
+  }
+  .content li {
+    margin-bottom: 8px;
+  }
+  .content a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .content a:hover {
+    text-decoration: underline;
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 80px auto 0;
+    padding: 32px 24px;
+    border-top: 1px solid var(--surface-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer p { font-size: 13px; color: var(--text-dim); }
+  .footer-links { display: flex; gap: 24px; }
+  footer a { color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.2s; }
+  footer a:hover { color: #fff; }
+
+  @media (max-width: 700px) {
+    nav { padding: 16px 20px; }
+    .nav-links { gap: 16px; }
+    .nav-link { display: none; }
+    .content h1 { font-size: 28px; }
+    footer { flex-direction: column; text-align: center; }
+    .footer-links { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-icon">⬡</div>
+    ReviewReply
+  </a>
+  <div class="nav-links">
+    <a href="/#how" class="nav-link">How it works</a>
+    <a href="/#pricing" class="nav-link">Pricing</a>
+    <a href="/#faq" class="nav-link">FAQ</a>
+    <a href="/#try" class="nav-cta">Try it free</a>
+  </div>
+</nav>
+
+<div class="content">
+  <h1>Privacy Policy</h1>
+  <p class="last-updated">Last updated: March 22, 2026</p>
+
+  <h2>1. Introduction</h2>
+  <p>ReviewReply ("we," "us," or "our") respects your privacy and is committed to protecting your personal information. This Privacy Policy explains what information we collect, how we use and protect it, and your rights regarding that information. This policy applies to all users of the ReviewReply website and service at reviewreply.dev.</p>
+
+  <h2>2. Information We Collect</h2>
+
+  <h3>Free Trial Users</h3>
+  <p>When you use the free trial, we do not require you to create an account or provide any personal information. We use browser local storage on your device to track the number of free uses remaining. This data is stored only on your device and is not transmitted to or accessible by us.</p>
+
+  <h3>Subscribers</h3>
+  <p>When you subscribe to ReviewReply, we collect the following information:</p>
+  <ul>
+    <li><strong>Email address</strong> — used for account identification, billing communications, and important service notifications.</li>
+    <li><strong>Payment information</strong> — processed and stored securely by our payment processor, Stripe. We do not receive, access, or store your full credit card number, debit card number, or bank account details. Stripe's handling of your payment data is governed by the <a href="https://stripe.com/privacy" target="_blank" rel="noopener">Stripe Privacy Policy</a>.</li>
+    <li><strong>Basic usage data</strong> — the number of responses generated and subscription status, used to provide the Service and improve our product.</li>
+  </ul>
+
+  <h3>Automatically Collected Data</h3>
+  <p>Our hosting provider (Vercel) automatically collects limited technical data through standard server logs, including: IP addresses, browser type and version, device type, referring URL, pages visited on our site, and the date and time of each request. This data is retained by Vercel in accordance with their data retention policies and is used solely to maintain, secure, and improve the Service.</p>
+
+  <h2>3. How We Use Your Information</h2>
+  <p>We use the information we collect for the following purposes:</p>
+  <ul>
+    <li>To provide, operate, and maintain the Service.</li>
+    <li>To process subscription payments and manage your account.</li>
+    <li>To send transactional communications, including billing confirmations, subscription renewal notices, and service-related updates.</li>
+    <li>To improve the Service based on aggregated, non-identifying usage patterns.</li>
+    <li>To detect and prevent fraud, abuse, or violations of our Terms of Service.</li>
+    <li>To comply with legal obligations.</li>
+  </ul>
+  <p>We do not sell, rent, trade, or share your personal information with third parties for their marketing purposes.</p>
+
+  <h2>4. Review Data</h2>
+  <p>When you paste a customer review into ReviewReply, that text is transmitted to our AI provider (Anthropic) to generate a response. We want to be clear about how this data is handled:</p>
+  <ul>
+    <li>Review text is processed in real-time to generate a response and is not permanently stored on our servers.</li>
+    <li>We do not retain, log, or archive the content of reviews you submit or the responses generated.</li>
+    <li>Anthropic's handling of data sent through their API is governed by the <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener">Anthropic Privacy Policy</a>. As of the date of this policy, Anthropic does not use API inputs to train its models.</li>
+  </ul>
+
+  <h2>5. Third-Party Service Providers</h2>
+  <p>We use the following third-party services to operate ReviewReply. Each has their own privacy policies governing how they handle data:</p>
+  <ul>
+    <li><strong>Stripe</strong> (<a href="https://stripe.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>) — payment processing and subscription management.</li>
+    <li><strong>Anthropic</strong> (<a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>) — AI text generation via their API.</li>
+    <li><strong>Vercel</strong> (<a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>) — website hosting, serverless functions, and server logs.</li>
+  </ul>
+  <p>We do not share your personal information with any third parties beyond what is necessary to operate the Service as described above.</p>
+
+  <h2>6. Cookies and Tracking</h2>
+  <p>ReviewReply uses minimal browser storage solely for Service functionality. We use browser local storage (not cookies) to track free trial usage counts. We do not use advertising cookies, third-party tracking cookies, analytics cookies, or any form of cross-site tracking. We do not participate in ad networks or share data with advertisers.</p>
+
+  <h2>7. Data Security</h2>
+  <p>We implement reasonable technical and organizational measures to protect your information, including:</p>
+  <ul>
+    <li>Encrypted connections (HTTPS/TLS) for all data in transit.</li>
+    <li>Secure payment processing through Stripe (PCI-DSS compliant).</li>
+    <li>Limited data collection and minimal data retention.</li>
+    <li>Environment variable protection for API keys and sensitive credentials.</li>
+  </ul>
+  <p>However, no method of transmission over the internet or electronic storage is completely secure. While we strive to protect your information, we cannot guarantee its absolute security.</p>
+
+  <h2>8. Data Retention</h2>
+  <p>We retain subscriber information (email address and usage data) for as long as your account is active. If you cancel your subscription, we retain your email address and basic billing history for up to 12 months after cancellation to support any billing inquiries, after which it is deleted. Server logs collected by Vercel are retained in accordance with Vercel's retention policies. Payment records are retained by Stripe in accordance with their policies and applicable financial regulations.</p>
+
+  <h2>9. Your Rights</h2>
+  <p>Depending on your location, you may have some or all of the following rights regarding your personal information:</p>
+  <ul>
+    <li><strong>Access:</strong> Request a copy of the personal information we hold about you.</li>
+    <li><strong>Correction:</strong> Request that we correct inaccurate personal information.</li>
+    <li><strong>Deletion:</strong> Request that we delete your personal information, subject to legal retention requirements.</li>
+    <li><strong>Portability:</strong> Request a copy of your data in a portable format.</li>
+    <li><strong>Opt out:</strong> Opt out of non-essential communications at any time.</li>
+    <li><strong>Cancel:</strong> Cancel your subscription at any time through the account management portal or by contacting us.</li>
+  </ul>
+  <p>To exercise any of these rights, contact us at <a href="mailto:support@reviewreply.dev">support@reviewreply.dev</a>. We will respond to all requests within 30 days.</p>
+
+  <h2>10. California Privacy Rights (CCPA/CPRA)</h2>
+  <p>If you are a California resident, you have additional rights under the California Consumer Privacy Act (CCPA) as amended by the California Privacy Rights Act (CPRA):</p>
+  <ul>
+    <li><strong>Right to know:</strong> You may request that we disclose the categories and specific pieces of personal information we have collected about you, the categories of sources, the business purpose for collection, and the categories of third parties with whom we share it.</li>
+    <li><strong>Right to delete:</strong> You may request the deletion of personal information we have collected from you, subject to certain exceptions.</li>
+    <li><strong>Right to opt out of sale:</strong> We do not sell your personal information. We have not sold personal information in the preceding 12 months.</li>
+    <li><strong>Right to non-discrimination:</strong> We will not discriminate against you for exercising any of your CCPA/CPRA rights.</li>
+  </ul>
+  <p>To submit a request, contact us at <a href="mailto:support@reviewreply.dev">support@reviewreply.dev</a>. We may need to verify your identity before fulfilling your request.</p>
+
+  <h2>11. European and UK Privacy Rights (GDPR / UK GDPR)</h2>
+  <p>If you are located in the European Economic Area (EEA), the United Kingdom, or Switzerland, the following provisions apply to you:</p>
+  <ul>
+    <li><strong>Legal basis for processing:</strong> We process your personal data on the following legal bases: contractual necessity (to provide the Service you have subscribed to), legitimate interests (to maintain, improve, and secure the Service), and compliance with legal obligations.</li>
+    <li><strong>International data transfers:</strong> Your data is processed in the United States. By using the Service, you acknowledge that your data will be transferred to and processed in the United States, which may not provide the same level of data protection as your country of residence. We rely on standard contractual clauses and other appropriate safeguards for such transfers.</li>
+    <li><strong>Data protection rights:</strong> In addition to the rights listed in Section 9, you have the right to restrict processing of your personal data, the right to object to processing based on legitimate interests, and the right to withdraw consent at any time (where processing is based on consent).</li>
+    <li><strong>Supervisory authority:</strong> You have the right to lodge a complaint with your local data protection authority if you believe your rights have been violated. A list of EU data protection authorities can be found at <a href="https://edpb.europa.eu/about-edpb/about-edpb/members_en" target="_blank" rel="noopener">edpb.europa.eu</a>.</li>
+  </ul>
+
+  <h2>12. Children's Privacy</h2>
+  <p>ReviewReply is not intended for use by individuals under the age of 18. We do not knowingly collect personal information from children under 18. If we become aware that we have collected personal information from a child under 18, we will take steps to delete that information promptly. If you believe a child under 18 has provided us with personal information, please contact us at <a href="mailto:support@reviewreply.dev">support@reviewreply.dev</a>.</p>
+
+  <h2>13. Disclosure of Information</h2>
+  <p>We may disclose your personal information in the following circumstances:</p>
+  <ul>
+    <li><strong>Legal requirements:</strong> If required to do so by law, regulation, legal process, or governmental request (such as a subpoena, court order, or search warrant).</li>
+    <li><strong>Protection of rights:</strong> To protect the rights, property, or safety of ReviewReply, our users, or others, including to enforce our Terms of Service.</li>
+    <li><strong>Business transfers:</strong> In connection with a merger, acquisition, reorganization, or sale of assets, in which case your personal information may be transferred as part of that transaction. We will notify you of any such change.</li>
+    <li><strong>With your consent:</strong> With your explicit consent for purposes not described in this Privacy Policy.</li>
+  </ul>
+
+  <h2>14. Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors. When we make changes, we will update the "Last updated" date at the top of this page. For material changes that significantly affect how we handle your personal information, we will make reasonable efforts to notify you (such as by email to subscribers or a prominent notice on the Service).</p>
+
+  <h2>15. Contact Us</h2>
+  <p>If you have questions about this Privacy Policy, your personal data, or wish to exercise any of your rights, please contact us at:</p>
+  <p><a href="mailto:support@reviewreply.dev">support@reviewreply.dev</a></p>
+</div>
+
+<footer>
+  <p>&copy; 2026 ReviewReply. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="/terms.html">Terms of Service</a>
+    <a href="/privacy.html">Privacy Policy</a>
+  </div>
+</footer>
+
+</body>
+</html>
