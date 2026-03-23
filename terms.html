@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — ReviewReply</title>
+<meta name="description" content="Terms of Service for ReviewReply — AI-powered review responses for small businesses.">
+<meta property="og:title" content="Terms of Service — ReviewReply">
+<meta property="og:description" content="Terms of Service for ReviewReply — AI-powered review responses for small businesses.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://reviewreply.dev/terms.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #08080d;
+    --surface: #101018;
+    --surface-border: #1a1a28;
+    --accent: #6366f1;
+    --accent-hover: #5558e6;
+    --text: #e4e4ec;
+    --text-muted: #7a7a8e;
+    --text-dim: #4a4a5e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    top: -40%;
+    left: -20%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(ellipse, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: -0.3px;
+  }
+  .logo-icon {
+    width: 34px; height: 34px;
+    background: linear-gradient(135deg, #6366f1, #818cf8);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    box-shadow: 0 2px 12px rgba(99, 102, 241, 0.3);
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .nav-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-link:hover { color: #fff; }
+  .nav-cta {
+    padding: 10px 22px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 2px 12px rgba(99, 102, 241, 0.25);
+  }
+  .nav-cta:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+  /* CONTENT */
+  .content {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 60px auto;
+    padding: 0 24px;
+  }
+  .content h1 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+  .last-updated {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-bottom: 40px;
+  }
+  .content h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin: 36px 0 12px;
+  }
+  .content p, .content li {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    line-height: 1.8;
+  }
+  .content ul {
+    padding-left: 24px;
+    margin-bottom: 16px;
+  }
+  .content li {
+    margin-bottom: 8px;
+  }
+  .content a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .content a:hover {
+    text-decoration: underline;
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 80px auto 0;
+    padding: 32px 24px;
+    border-top: 1px solid var(--surface-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer p { font-size: 13px; color: var(--text-dim); }
+  .footer-links { display: flex; gap: 24px; }
+  footer a { color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.2s; }
+  footer a:hover { color: #fff; }
+
+  @media (max-width: 700px) {
+    nav { padding: 16px 20px; }
+    .nav-links { gap: 16px; }
+    .nav-link { display: none; }
+    .content h1 { font-size: 28px; }
+    footer { flex-direction: column; text-align: center; }
+    .footer-links { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-icon">⬡</div>
+    ReviewReply
+  </a>
+  <div class="nav-links">
+    <a href="/#how" class="nav-link">How it works</a>
+    <a href="/#pricing" class="nav-link">Pricing</a>
+    <a href="/#faq" class="nav-link">FAQ</a>
+    <a href="/#try" class="nav-cta">Try it free</a>
+  </div>
+</nav>
+
+<div class="content">
+  <h1>Terms of Service</h1>
+  <p class="last-updated">Last updated: March 22, 2026</p>
+
+  <h2>1. Agreement to Terms</h2>
+  <p>By accessing or using ReviewReply ("the Service," "we," "us," or "our"), you ("you" or "the User") agree to be bound by these Terms of Service ("Terms"). If you do not agree to all of these Terms, do not use the Service. These Terms constitute a legally binding agreement between you and ReviewReply.</p>
+
+  <h2>2. Eligibility</h2>
+  <p>You must be at least 18 years of age to use this Service. By using ReviewReply, you represent and warrant that you are at least 18 years old and have the legal capacity to enter into these Terms. If you are using the Service on behalf of a business or other entity, you represent that you have the authority to bind that entity to these Terms.</p>
+
+  <h2>3. Description of Service</h2>
+  <p>ReviewReply is an AI-powered tool that generates suggested text responses to customer reviews. You provide review content and a star rating, and the Service returns a suggested response generated by artificial intelligence. These suggestions are intended as starting points and should be reviewed, edited, and approved by you before use.</p>
+
+  <h2>4. AI-Generated Content Disclaimer</h2>
+  <p>All responses generated by ReviewReply are AI-created suggestions. You acknowledge and agree that:</p>
+  <ul>
+    <li>You are solely responsible for reviewing, editing, and approving any AI-generated content before posting it publicly.</li>
+    <li>ReviewReply does not guarantee the accuracy, completeness, appropriateness, or suitability of any generated response.</li>
+    <li>AI-generated content may occasionally contain errors, inaccuracies, or inappropriate language.</li>
+    <li>You assume full responsibility for any content you post based on ReviewReply's suggestions, whether or not you have edited it.</li>
+    <li>ReviewReply is not liable for any consequences arising from your use or publication of AI-generated content.</li>
+  </ul>
+
+  <h2>5. Free Trial</h2>
+  <p>We offer a limited number of free uses of the Service without requiring an account or payment information. Free trial usage is subject to the same terms as paid usage. We reserve the right to modify, limit, or discontinue the free trial at any time without notice.</p>
+
+  <h2>6. Subscriptions, Billing, and Automatic Renewal</h2>
+  <p>Paid access to ReviewReply is available through a subscription. By subscribing, you acknowledge and agree to the following:</p>
+  <ul>
+    <li><strong>Recurring charges:</strong> Your subscription will automatically renew at the end of each billing period (monthly or annually, depending on your selected plan) at the then-current subscription rate, unless you cancel before the renewal date.</li>
+    <li><strong>Payment authorization:</strong> By providing your payment information and completing your purchase, you authorize us to charge your selected payment method on a recurring basis for the applicable subscription fee plus any taxes until you cancel.</li>
+    <li><strong>Price changes:</strong> We may change subscription pricing at any time. Any price changes will take effect at the start of your next billing period following notice of the change. Your continued use of the Service after a price change constitutes your acceptance of the new price.</li>
+    <li><strong>How to cancel:</strong> You may cancel your subscription at any time through the account management portal accessible from the Service. You may also contact us at <a href="mailto:support@reviewreply.dev">support@reviewreply.dev</a> to request cancellation.</li>
+    <li><strong>Effect of cancellation:</strong> If you cancel, your subscription remains active until the end of your current paid billing period. You will retain full access to the Service until that date. No partial refunds are provided for unused time within a billing period.</li>
+    <li><strong>Confirmation:</strong> After subscribing, you will receive a confirmation to the email address associated with your account that includes: the subscription plan and price, billing frequency, renewal date, and instructions for how to cancel.</li>
+  </ul>
+  <p>These automatic renewal terms comply with the California Automatic Renewal Law (California Business and Professions Code §§ 17600–17606).</p>
+
+  <h2>7. Refund Policy</h2>
+  <p>No refunds are provided for partial billing periods. Because the Service includes a free trial that allows you to evaluate the product before subscribing, all subscription payments are final. If you believe you have been charged in error, please contact us at <a href="mailto:support@reviewreply.dev">support@reviewreply.dev</a> within 14 days of the charge.</p>
+
+  <h2>8. Acceptable Use</h2>
+  <p>You agree not to:</p>
+  <ul>
+    <li>Use the Service to generate content that is harmful, threatening, abusive, defamatory, obscene, fraudulent, or otherwise objectionable or illegal.</li>
+    <li>Attempt to reverse-engineer, decompile, disassemble, or otherwise attempt to derive the source code or underlying algorithms of the Service.</li>
+    <li>Use automated tools, bots, scrapers, or scripts to access the Service beyond normal individual use.</li>
+    <li>Resell, redistribute, sublicense, or offer the Service or its output as part of a competing product or service.</li>
+    <li>Circumvent or attempt to circumvent any usage limits, access controls, or security measures of the Service.</li>
+    <li>Impersonate any person or entity, or misrepresent your affiliation with any person or entity.</li>
+    <li>Violate any applicable local, state, national, or international law or regulation while using the Service.</li>
+  </ul>
+
+  <h2>9. Intellectual Property</h2>
+  <p>The ReviewReply website, branding, design, code, and underlying technology are the exclusive property of ReviewReply and are protected by applicable intellectual property laws. You may not copy, modify, distribute, or create derivative works of any part of the Service without our prior written consent.</p>
+  <p>Responses generated through the Service using your input are yours to use, edit, and publish as you see fit, subject to these Terms and the AI-Generated Content Disclaimer above.</p>
+
+  <h2>10. Privacy</h2>
+  <p>Your use of the Service is also governed by our <a href="/privacy.html">Privacy Policy</a>, which describes how we collect, use, and protect your information. By using the Service, you consent to the practices described in the Privacy Policy.</p>
+
+  <h2>11. Limitation of Liability</h2>
+  <p>To the fullest extent permitted by applicable law:</p>
+  <ul>
+    <li>The Service is provided on an "as is" and "as available" basis, without warranties of any kind, whether express, implied, or statutory, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement.</li>
+    <li>ReviewReply does not warrant that the Service will be uninterrupted, error-free, secure, or free of viruses or other harmful components.</li>
+    <li>In no event shall ReviewReply, its owners, operators, affiliates, or service providers be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, revenue, data, business opportunities, or goodwill, arising out of or in connection with your use of the Service.</li>
+    <li>Our total aggregate liability to you for all claims arising from or related to the Service shall not exceed the total amount you paid to ReviewReply in the twelve (12) months immediately preceding the event giving rise to the claim.</li>
+  </ul>
+
+  <h2>12. Indemnification</h2>
+  <p>You agree to indemnify, defend, and hold harmless ReviewReply and its owners, operators, affiliates, and service providers from and against any claims, damages, losses, liabilities, costs, and expenses (including reasonable attorney's fees) arising out of or related to: your use of the Service, any content you post based on AI-generated suggestions, your violation of these Terms, or your violation of any applicable law or the rights of any third party.</p>
+
+  <h2>13. Dispute Resolution and Binding Arbitration</h2>
+  <p><strong>Please read this section carefully. It affects your legal rights, including your right to file a lawsuit in court.</strong></p>
+  <p>You and ReviewReply agree that any dispute, claim, or controversy arising out of or relating to these Terms or the Service ("Dispute") shall be resolved through binding individual arbitration, rather than in court, except that either party may bring an individual action in small claims court if the claim qualifies.</p>
+  <p>Arbitration shall be administered by JAMS under its Streamlined Arbitration Rules and Procedures, or, if JAMS is unavailable, by another mutually agreed-upon arbitration provider. The arbitration shall take place in Santa Clara County, California, or at another mutually agreed location, and may be conducted remotely by video or telephone if requested by either party.</p>
+  <p><strong>Class action waiver:</strong> You and ReviewReply each agree that any Dispute shall be brought solely in your or our individual capacity, and not as a plaintiff or class member in any purported class, consolidated, or representative proceeding. The arbitrator may not consolidate more than one person's claims and may not preside over any form of class or representative proceeding.</p>
+  <p><strong>Opt-out:</strong> You may opt out of this arbitration provision by sending written notice to <a href="mailto:support@reviewreply.dev">support@reviewreply.dev</a> within 30 days of first using the Service. If you opt out, disputes will be resolved in the state or federal courts located in Santa Clara County, California.</p>
+
+  <h2>14. Governing Law and Jurisdiction</h2>
+  <p>These Terms shall be governed by and construed in accordance with the laws of the State of California, United States, without regard to its conflict of law provisions. To the extent that litigation is permitted under these Terms, you consent to the exclusive jurisdiction and venue of the state and federal courts located in Santa Clara County, California.</p>
+
+  <h2>15. Modifications to the Service</h2>
+  <p>We reserve the right to modify, suspend, or discontinue the Service (or any part of it) at any time, with or without notice. We shall not be liable to you or any third party for any modification, suspension, or discontinuation of the Service.</p>
+
+  <h2>16. Changes to These Terms</h2>
+  <p>We may update these Terms from time to time. When we make changes, we will update the "Last updated" date at the top of this page. For material changes that affect your rights or obligations, we will make reasonable efforts to notify you (such as by email or a notice on the Service). Your continued use of the Service after any changes constitutes your acceptance of the updated Terms.</p>
+
+  <h2>17. Termination</h2>
+  <p>We reserve the right to suspend or terminate your access to the Service at any time, with or without cause and with or without notice, including for violations of these Terms. You may stop using the Service at any time. Upon termination, your right to use the Service ceases immediately, except that Sections 4, 11, 12, 13, 14, and 18 shall survive termination.</p>
+
+  <h2>18. General Provisions</h2>
+  <p><strong>Entire agreement:</strong> These Terms, together with the Privacy Policy, constitute the entire agreement between you and ReviewReply regarding the Service and supersede all prior agreements and understandings.</p>
+  <p><strong>Severability:</strong> If any provision of these Terms is found to be unenforceable, the remaining provisions will continue in full force and effect.</p>
+  <p><strong>Waiver:</strong> Our failure to enforce any right or provision of these Terms shall not constitute a waiver of that right or provision.</p>
+  <p><strong>Assignment:</strong> You may not assign or transfer your rights under these Terms without our prior written consent. We may assign our rights and obligations without restriction.</p>
+
+  <h2>19. Contact</h2>
+  <p>If you have questions about these Terms, please contact us at <a href="mailto:support@reviewreply.dev">support@reviewreply.dev</a>.</p>
+</div>
+
+<footer>
+  <p>&copy; 2026 ReviewReply. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="/terms.html">Terms of Service</a>
+    <a href="/privacy.html">Privacy Policy</a>
+  </div>
+</footer>
+
+</body>
+</html>
