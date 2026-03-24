@@ -471,19 +471,22 @@
   }
   .demo-upsell.show { display: block; animation: fadeIn 0.3s ease; }
   .demo-upsell p { font-size: 14px; color: var(--text-muted); margin-bottom: 14px; line-height: 1.6; }
-  .demo-upsell a {
+  .demo-upsell button {
     display: inline-block;
     padding: 12px 28px;
     background: var(--accent);
     color: #fff;
+    border: none;
     border-radius: 9px;
     text-decoration: none;
     font-weight: 600;
     font-size: 14px;
+    font-family: inherit;
+    cursor: pointer;
     transition: all 0.2s;
     box-shadow: 0 2px 12px rgba(99, 102, 241, 0.25);
   }
-  .demo-upsell a:hover { background: var(--accent-hover); transform: translateY(-1px); }
+  .demo-upsell button:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
   /* PRICING */
   .pricing {
@@ -598,6 +601,7 @@
     border-radius: var(--radius-sm);
     font-size: 16px;
     font-weight: 700;
+    font-family: inherit;
     cursor: pointer;
     transition: all 0.2s;
     text-decoration: none;
@@ -605,6 +609,7 @@
     box-shadow: 0 4px 20px rgba(99, 102, 241, 0.25);
   }
   .price-cta:hover { background: var(--accent-hover); transform: translateY(-1px); }
+  .price-cta:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
   .price-guarantee {
     text-align: center;
     margin-top: 16px;
@@ -822,7 +827,7 @@
 
     <div class="demo-upsell" id="upsellBox">
       <p>You've used your 3 free tries.<br>Get unlimited replies for less than a coffee a week.</p>
-      <a href="#pricing">Get unlimited replies — $9/mo</a>
+      <button onclick="subscribe()">Get unlimited replies — $9/mo</button>
     </div>
   </div>
 </section>
@@ -850,8 +855,8 @@
       <li><span class="check-icon">✓</span> Response in under 5 seconds</li>
       <li><span class="check-icon">✓</span> Cancel anytime — no contracts, no hassle</li>
     </ul>
-    <a href="#try" class="price-cta">Try it free</a>
-    <p class="price-guarantee">3 free tries included · No credit card required · Cancel anytime</p>
+    <button class="price-cta" id="subscribeCta" onclick="subscribe()">Subscribe — $9/month</button>
+    <p class="price-guarantee">3 free tries above · Secure payment via Stripe · Cancel anytime</p>
   </div>
 </section>
 
@@ -901,6 +906,7 @@
 
 <script>
 let currentStars = 1;
+let currentPlan = 'monthly';
 const FREE_LIMIT = 3;
 const STORAGE_KEY = 'rr_demo_uses';
 
@@ -1040,16 +1046,49 @@ function copyReply() {
 
 // Pricing toggle
 function setPricing(period) {
+  currentPlan = period;
   const btns = document.querySelectorAll('.price-toggle-btn');
+  const cta = document.getElementById('subscribeCta');
   btns.forEach(b => b.classList.remove('active'));
   if (period === 'monthly') {
     btns[0].classList.add('active');
     document.getElementById('priceDisplay').innerHTML = '$9<span>/month</span>';
     document.getElementById('yearlyNote').style.display = 'none';
+    cta.textContent = 'Subscribe — $9/month';
   } else {
     btns[1].classList.add('active');
     document.getElementById('priceDisplay').innerHTML = '$6.58<span>/month</span>';
     document.getElementById('yearlyNote').style.display = 'block';
+    cta.textContent = 'Subscribe — $79/year';
+  }
+}
+
+// Subscribe — sends user to Stripe Checkout
+async function subscribe() {
+  const cta = document.getElementById('subscribeCta');
+  cta.disabled = true;
+  cta.textContent = 'Redirecting to checkout...';
+
+  try {
+    const res = await fetch('/api/create-checkout-session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ plan: currentPlan })
+    });
+
+    const data = await res.json();
+
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert('Something went wrong. Please try again.');
+      cta.disabled = false;
+      cta.textContent = currentPlan === 'yearly' ? 'Subscribe — $79/year' : 'Subscribe — $9/month';
+    }
+  } catch (err) {
+    alert('Connection error. Please check your internet and try again.');
+    cta.disabled = false;
+    cta.textContent = currentPlan === 'yearly' ? 'Subscribe — $79/year' : 'Subscribe — $9/month';
   }
 }
 
