@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReviewReply — Generate Response</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #0a0a0f;
+      color: #e2e2e2;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* -- Loading screen (shows while verifying session) -- */
+    #loading-screen {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #0a0a0f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(99, 102, 241, 0.2);
+      border-top-color: #6366f1;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* -- Header -- */
+    header {
+      width: 100%;
+      max-width: 700px;
+      padding: 24px 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: #6366f1;
+    }
+
+    .manage-btn {
+      background: none;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #a5a5b8;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .manage-btn:hover {
+      border-color: #6366f1;
+      color: #fff;
+    }
+
+    /* -- Main tool area -- */
+    main {
+      width: 100%;
+      max-width: 700px;
+      padding: 40px 20px;
+      flex: 1;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      color: #6b6b80;
+      font-size: 14px;
+      margin-bottom: 32px;
+    }
+
+    /* -- Star rating -- */
+    .field-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #c0c0d0;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .star-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+
+    .star-btn {
+      background: #16161f;
+      border: 1px solid #2a2a3a;
+      color: #e2e2e2;
+      width: 48px;
+      height: 44px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .star-btn:hover {
+      border-color: #6366f1;
+    }
+
+    .star-btn.active {
+      background: #6366f1;
+      border-color: #6366f1;
+      color: #fff;
+    }
+
+    .star-icon {
+      font-size: 13px;
+    }
+
+    /* -- Textarea -- */
+    textarea {
+      width: 100%;
+      min-height: 140px;
+      background: #16161f;
+      border: 1px solid #2a2a3a;
+      border-radius: 10px;
+      color: #e2e2e2;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px;
+      resize: vertical;
+      transition: border-color 0.2s;
+      margin-bottom: 6px;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: #6366f1;
+    }
+
+    textarea::placeholder {
+      color: #4a4a5a;
+    }
+
+    .char-hint {
+      font-size: 12px;
+      color: #4a4a5a;
+      margin-bottom: 20px;
+    }
+
+    /* -- Generate button -- */
+    .generate-btn {
+      width: 100%;
+      padding: 16px;
+      background: #6366f1;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .generate-btn:hover {
+      background: #5558e6;
+    }
+
+    .generate-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* -- Response output -- */
+    .response-area {
+      margin-top: 28px;
+      display: none;
+    }
+
+    .response-area.visible {
+      display: block;
+    }
+
+    .response-box {
+      background: #16161f;
+      border: 1px solid #2a2a3a;
+      border-radius: 10px;
+      padding: 20px;
+      line-height: 1.7;
+      font-size: 15px;
+      color: #e2e2e2;
+      white-space: pre-wrap;
+      position: relative;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #6366f1;
+      border: none;
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: #5558e6;
+    }
+
+    /* -- Error message -- */
+    .error-msg {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #f87171;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-top: 16px;
+      display: none;
+    }
+
+    .error-msg.visible {
+      display: block;
+    }
+
+    /* -- Footer -- */
+    footer {
+      width: 100%;
+      max-width: 700px;
+      padding: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: #4a4a5a;
+    }
+
+    footer a {
+      color: #6b6b80;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #6366f1;
+    }
+
+    /* -- Mobile -- */
+    @media (max-width: 480px) {
+      header { padding: 16px 16px 0; }
+      main { padding: 28px 16px; }
+      h1 { font-size: 20px; }
+      .star-btn { width: 42px; height: 40px; font-size: 14px; }
+      textarea { min-height: 120px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading screen while we verify the session -->
+  <div id="loading-screen">
+    <div class="spinner"></div>
+  </div>
+
+  <header>
+    <a href="/" class="logo">Review<span>Reply</span></a>
+    <button class="manage-btn" id="manage-btn" onclick="openPortal()">Manage Subscription</button>
+  </header>
+
+  <main>
+    <h1>Generate a Response</h1>
+    <p class="subtitle">Paste a review, pick the star rating, and get a professional reply in seconds.</p>
+
+    <!-- Star rating -->
+    <label class="field-label">Star rating of the review</label>
+    <div class="star-row">
+      <button class="star-btn" data-stars="1" onclick="pickStars(1)">1 <span class="star-icon">★</span></button>
+      <button class="star-btn" data-stars="2" onclick="pickStars(2)">2 <span class="star-icon">★</span></button>
+      <button class="star-btn" data-stars="3" onclick="pickStars(3)">3 <span class="star-icon">★</span></button>
+      <button class="star-btn" data-stars="4" onclick="pickStars(4)">4 <span class="star-icon">★</span></button>
+      <button class="star-btn active" data-stars="5" onclick="pickStars(5)">5 <span class="star-icon">★</span></button>
+    </div>
+
+    <!-- Review input -->
+    <label class="field-label">Paste the review</label>
+    <textarea id="review-input" placeholder="Paste the customer review here..."></textarea>
+    <p class="char-hint">Minimum 15 characters</p>
+
+    <!-- Generate button -->
+    <button class="generate-btn" id="generate-btn" onclick="generateReply()">Generate Response</button>
+
+    <!-- Error message -->
+    <div class="error-msg" id="error-msg"></div>
+
+    <!-- Response output -->
+    <div class="response-area" id="response-area">
+      <label class="field-label">Your response</label>
+      <div class="response-box">
+        <button class="copy-btn" onclick="copyResponse()">Copy</button>
+        <div id="response-text"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <a href="/terms.html">Terms</a> &nbsp;·&nbsp; <a href="/privacy.html">Privacy</a>
+  </footer>
+
+  <script>
+    // -- State --
+    let selectedStars = 5;
+    let customerId = null;
+
+    // -- On page load: verify the session --
+    (async function verifyAccess() {
+      // Grab session_id from the URL (Stripe adds it after checkout)
+      const params = new URLSearchParams(window.location.search);
+      const sessionId = params.get('session_id');
+
+      // Also check if we have a saved customer ID from a previous visit
+      const savedCustomer = localStorage.getItem('rr_customer_id');
+
+      if (sessionId) {
+        // Fresh from checkout — verify with Stripe
+        try {
+          const res = await fetch(`/api/verify-session?session_id=${sessionId}`);
+          const data = await res.json();
+
+          if (data.valid) {
+            // Save customer ID so they can come back without re-paying
+            customerId = data.customer_id;
+            localStorage.setItem('rr_customer_id', data.customer_id);
+            localStorage.setItem('rr_sub_id', data.subscription_id);
+            if (data.customer_email) {
+              localStorage.setItem('rr_email', data.customer_email);
+            }
+            showApp();
+          } else {
+            // Payment didn't go through
+            window.location.href = '/?error=payment_failed';
+          }
+        } catch (err) {
+          window.location.href = '/?error=verification_failed';
+        }
+      } else if (savedCustomer) {
+        // Returning subscriber — they have a saved customer ID
+        customerId = savedCustomer;
+        showApp();
+      } else {
+        // No session, no saved customer — not a subscriber
+        window.location.href = '/#pricing';
+      }
+    })();
+
+    function showApp() {
+      document.getElementById('loading-screen').style.display = 'none';
+      // Clean up the URL so session_id isn't sitting there
+      if (window.location.search) {
+        window.history.replaceState({}, '', '/app.html');
+      }
+    }
+
+    // -- Star selection --
+    function pickStars(n) {
+      selectedStars = n;
+      document.querySelectorAll('.star-btn').forEach(btn => {
+        btn.classList.toggle('active', parseInt(btn.dataset.stars) === n);
+      });
+    }
+
+    // -- Generate response --
+    async function generateReply() {
+      const review = document.getElementById('review-input').value.trim();
+      const btn = document.getElementById('generate-btn');
+      const errorEl = document.getElementById('error-msg');
+      const responseArea = document.getElementById('response-area');
+      const responseText = document.getElementById('response-text');
+
+      // Hide previous results/errors
+      errorEl.classList.remove('visible');
+      responseArea.classList.remove('visible');
+
+      // Validate
+      if (review.length < 15) {
+        errorEl.textContent = 'Please paste a review with at least 15 characters.';
+        errorEl.classList.add('visible');
+        return;
+      }
+
+      // Disable button, show loading state
+      btn.disabled = true;
+      btn.textContent = 'Generating...';
+
+      try {
+        const res = await fetch('/api/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ review, stars: selectedStars })
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.reply) {
+          responseText.textContent = data.reply;
+          responseArea.classList.add('visible');
+          // Scroll to the response
+          responseArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          errorEl.textContent = data.error || 'Something went wrong. Please try again.';
+          errorEl.classList.add('visible');
+        }
+      } catch (err) {
+        errorEl.textContent = 'Connection error. Please check your internet and try again.';
+        errorEl.classList.add('visible');
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'Generate Response';
+    }
+
+    // -- Copy response --
+    function copyResponse() {
+      const text = document.getElementById('response-text').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+      });
+    }
+
+    // -- Open Stripe customer portal --
+    async function openPortal() {
+      if (!customerId) {
+        alert('Unable to load subscription management. Please try refreshing the page.');
+        return;
+      }
+
+      const btn = document.getElementById('manage-btn');
+      btn.textContent = 'Loading...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('/api/customer-portal', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ customer_id: customerId })
+        });
+
+        const data = await res.json();
+
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          alert('Could not open subscription management. Please try again.');
+        }
+      } catch (err) {
+        alert('Connection error. Please try again.');
+      }
+
+      btn.textContent = 'Manage Subscription';
+      btn.disabled = false;
+    }
+  </script>
+</body>
+</html>
