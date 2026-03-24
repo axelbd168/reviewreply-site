@@ -39,7 +39,7 @@ module.exports = async (req, res) => {
       // Where Stripe sends the customer if they click "Back" or close the page
       cancel_url: 'https://reviewreply.dev/#pricing',
       // This tells Stripe to automatically collect the customer's email
-      customer_creation: 'always',
+      
       // Allow promo codes if you ever want to offer discounts
       allow_promotion_codes: true,
     });
